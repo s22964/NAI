@@ -1,0 +1,9 @@
+Dla 100x100 z kilkoma przeszkodami i endNode{72,78}
+
+Dijkstra~=1.27s
+A*~=1.23
+
+A* wykonuje więcej instrukcji dla każdego node'a, ale ilość instrukcji jest zależna od odległości endNode.
+Dijkstra natomiast ma mniej istrukcji dla pojedynczego node'a, jednak sprawdza on wszystkie node'y w grafie.
+
+Rezultat: Im bliżej endNode tym szybszy jest A*, jednak Dijkstra zapewnia większą dokładność.
