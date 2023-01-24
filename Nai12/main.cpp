@@ -4,7 +4,9 @@
 #include <list>
 #include <sstream>
 #include <fstream>
+#include <chrono>
 
+std::chrono::time_point <std::chrono::system_clock, std::chrono::duration<double>> czas_start;
 struct node
 {
     int x;
@@ -85,6 +87,7 @@ std::vector<int> createObstacle(int x, int y){
 
 int main(int argc, char **argv) {
     using namespace std;
+
     cout<<"1.Filename 2.Start-x 3.Start-y 4.End-x 5.End-y"<<endl;
     node* nodes= nullptr;
     int max_x,max_y,sX,sY,eX,eY;
@@ -108,6 +111,7 @@ int main(int argc, char **argv) {
         cout<<"bad points";
         exit(3);
     }
+    auto czas_start = std::chrono::system_clock::now();
     bool t=false;
     nodes=new node[max_x*max_y]; //zajecie miejsca dla nodow
     for (int b=0;b<max_x;b++){ //tworzenie nodow
@@ -199,6 +203,7 @@ int main(int argc, char **argv) {
         path.push_back(current->parent);
         current=current->parent;
     }
+    auto czas_stop = std::chrono::system_clock::now();
 
     for (int b=0;b<max_x;b++) { //tworzenie nodow
         for (int a = 0; a < max_y; a++) {
@@ -234,6 +239,8 @@ int main(int argc, char **argv) {
         }
         cout << endl;
     }
+    std::chrono::duration<double> czas_obliczen = czas_stop-czas_start;
+    std::cout << "Czas Obliczen: " << czas_obliczen.count() << "s\n";
 
 
 
